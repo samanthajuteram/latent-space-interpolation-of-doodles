@@ -1,0 +1,1 @@
+# define vae architecture (enocder, decoder, reparameterization, etc..)
