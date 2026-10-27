@@ -73,9 +73,9 @@ The notebook examines sample images and pixel range, selects a balanced subset o
 
 The processed dataset is saved to:
 
-`data/processed/quickdrae_dataset.npz`
+`data/processed/quickdraw_dataset.npz`
 
-The default configuration uses up to 5,000 images per category.
+The default configuration uses 5,000 images per category.
 
 ### 5. Train and evaluate the model
 
