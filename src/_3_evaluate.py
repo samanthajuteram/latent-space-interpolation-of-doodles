@@ -15,8 +15,8 @@ def evaluate_reconstruction():
     model.eval()
     
     # get small batch for viz
-    dataloader = get_dataloader(batch_size=5)
-    images, _ = next(iter(dataloader))
+    _,_, test_loader = get_dataloader(batch_size=5)
+    images, _ = next(iter(test_loader))
     images = images.to(device)
     
     # forward pass
