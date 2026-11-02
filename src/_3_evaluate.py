@@ -2,8 +2,8 @@
 from pathlib import Path
 import torch
 import matplotlib.pyplot as plt
-from vae import VAE
-from data import get_dataloader
+from _1_vae import VAE
+from _0_data import get_dataloader
 
 def evaluate_reconstruction():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
