@@ -79,14 +79,13 @@ The default configuration uses 5,000 images per category.
 
 ### 5. Train and evaluate the model
 
-*Subject to change*
-
 After preprocessing, the scripts in `src/` will use the saved dataset to train and evaluate the VAE.
 
-- `data.py` loads the processed arrays and prepares the PyTorch data loaders.
-- `vae.py` defines the encoder, latent sampling procedure, and decoder.
-- `train.py` runs model training and tracks the loss components.
-- `evaluate.py` evaluates reconstructions and generates samples and latent-space interpolation visualizations.
+- `_0_data.py` loads the processed arrays and prepares the PyTorch data loaders.
+- `_1_vae.py` defines the encoder, latent sampling procedure, and decoder.
+- `_2_train.py` runs model training and tracks the loss components.
+- `_3_evaluate.py` evaluates reconstructions and generates samples and latent space interpolation visualizations.
+- `_4_interpolate.py` encodes cat and clock test examples, interpolates between their latent means (linear and spherical), decodes the intermediate points, and measures smoothness over many random pairs. Run `python src/_4_interpolate.py` from the repo root. Figures and `metrics.json` are saved to `results/interpolation/`.
 
 
 ## Method
