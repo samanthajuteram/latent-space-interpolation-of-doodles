@@ -1,0 +1,37 @@
+{
+  "0.1": {
+    "recon_bce": 134.37,
+    "latent_probe_acc": 0.978,
+    "max_step_ratio": 1.353,
+    "peak_off_manifold": 1.355,
+    "transition_width": 0.173
+  },
+  "0.5": {
+    "recon_bce": 138.38,
+    "latent_probe_acc": 0.975,
+    "max_step_ratio": 1.754,
+    "peak_off_manifold": 1.274,
+    "transition_width": 0.119
+  },
+  "1.0": {
+    "recon_bce": 146.7,
+    "latent_probe_acc": 0.976,
+    "max_step_ratio": 1.789,
+    "peak_off_manifold": 1.31,
+    "transition_width": 0.107
+  },
+  "2.0": {
+    "recon_bce": 174.45,
+    "latent_probe_acc": 0.973,
+    "max_step_ratio": 1.567,
+    "peak_off_manifold": 1.335,
+    "transition_width": 0.115
+  },
+  "5.0": {
+    "recon_bce": 222.91,
+    "latent_probe_acc": 0.977,
+    "max_step_ratio": 1.325,
+    "peak_off_manifold": 1.552,
+    "transition_width": 0.135
+  }
+}

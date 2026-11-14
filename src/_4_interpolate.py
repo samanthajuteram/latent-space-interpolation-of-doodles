@@ -127,7 +127,8 @@ def transition_width(p, ts):
 
 # MAIN --
 
-def main():
+# argv lets the beta sweep call main() directly
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--steps", type=int, default=10, help="number of interpolation points incl. endpoints")
     ap.add_argument("--n-show", type=int, default=5, help="pairs shown in the grids")
@@ -136,17 +137,24 @@ def main():
     ap.add_argument("--clock-idx", type=int, nargs="*", help="indices into the test set clocks to use as endpoints")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--show", action="store_true", help="also display figures")
-    args = ap.parse_args()
+    ap.add_argument("--beta", type=float, help="load vae_beta{beta}.pth from the beta sweep instead of the baseline")
+    args = ap.parse_args(argv)
 
     rng = np.random.default_rng(args.seed)
     torch.manual_seed(args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     out_dir = Path(__file__).parent.parent / "results" / "interpolation"
+
+    # pick checkpoint: baseline by default, or one model from the beta sweep (own results folder)
+    model_name = "vae_baseline.pth"
+    if args.beta is not None:
+        model_name = f"vae_beta{args.beta}.pth"
+        out_dir = out_dir / f"beta_{args.beta}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # load model
     model = VAE(latent_dim=LATENT_DIM).to(device)
-    model.load_state_dict(torch.load(Path(__file__).parent / "vae_baseline.pth", weights_only=True, map_location=device))
+    model.load_state_dict(torch.load(Path(__file__).parent / model_name, weights_only=True, map_location=device))
     model.eval()
 
     # data (same split as training)
@@ -344,6 +352,7 @@ def main():
         "pixel_classifier_test_acc": round(clf_acc, 4), #how reliable the judge is 
         "latent_linear_probe_test_acc": round(latent_probe_acc, 4), # log reg on mu
         "nn_spacing_real_codes": round(nn_scale, 4), # ref distance
+        "test_recon_bce_mean": round(float(err.mean()), 2), # image clarity: lower --> sharper reconstructions
         "n_pairs": args.n_pairs,
         "path_points": len(dense_np),
     }
@@ -367,6 +376,9 @@ def main():
 
     if args.show:
         plt.show()
+    plt.close("all") # free figures so the sweep doesn't pile them up
+
+    return result
 
 
 if __name__ == "__main__":

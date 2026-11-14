@@ -86,6 +86,7 @@ After preprocessing, the scripts in `src/` will use the saved dataset to train a
 - `_2_train.py` runs model training and tracks the loss components.
 - `_3_evaluate.py` evaluates reconstructions and generates samples and latent space interpolation visualizations.
 - `_4_interpolate.py` encodes cat and clock test examples, interpolates between their latent means (linear and spherical), decodes the intermediate points, and measures smoothness over many random pairs. Run `python src/_4_interpolate.py` from the repo root. Figures and `metrics.json` are saved to `results/interpolation/`.
+- `_5_beta_sweep.py` retrains the VAE with β ∈ {0.1, 0.5, 1.0, 2.0, 5.0} and reruns the interpolation metrics for each, to find the balance between image clarity and interpolation quality. Run `python src/_5_beta_sweep.py`. Results go to `results/interpolation/beta_{β}/` plus a summary plot `beta_sweep.png`.
 
 
 ## Method

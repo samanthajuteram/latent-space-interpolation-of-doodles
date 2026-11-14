@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 from _1_vae import VAE
 from _0_data import get_dataloader
 
-def train():
-    
+# beta scales the KL term (Higgins et al., 2017) -> beta sweep passes in its own values + file names
+def train(beta=0.1, save_name="vae_baseline.pth", plot_name="training_losses.png", show=True):
+
     # SETUP --
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -28,8 +29,7 @@ def train():
 
     # TRAINING --
 
-    #adding beta weight to reduce KL penalty
-    beta = 0.1
+    #beta weight on KL penalty is now a train() argument (default 0.1)
 
     # epochs = 10         # can adjust this for longer training
     epochs = 50
@@ -121,7 +121,7 @@ def train():
         val_kl_losses.append(val_kl)
 
     # SAVE MODEL --
-    save_path = Path(__file__).parent / "vae_baseline.pth"
+    save_path = Path(__file__).parent / save_name
     torch.save(model.state_dict(), save_path)
 
 
@@ -158,9 +158,11 @@ def train():
     plt.tight_layout()
     results_dir = Path(__file__).parent.parent / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
-    plot_path = results_dir / "training_losses.png"
+    plot_path = results_dir / plot_name
     plt.savefig(plot_path, dpi=300)
-    plt.show()
+    if show:
+        plt.show()
+    plt.close("all")
 
 
 if __name__ == "__main__":

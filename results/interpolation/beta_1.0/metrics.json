@@ -1,0 +1,37 @@
+{
+  "pixel_classifier_test_acc": 0.971,
+  "latent_linear_probe_test_acc": 0.976,
+  "nn_spacing_real_codes": 4.2052,
+  "test_recon_bce_mean": 146.7,
+  "n_pairs": 200,
+  "path_points": 21,
+  "cross_lerp": {
+    "max_step_ratio_median": 1.789,
+    "peak_off_manifold_median": 1.31,
+    "transition_width_median": 0.107,
+    "frac_paths_reaching_clock": 0.91,
+    "p_clock_at_midpoint_mean": 0.653
+  },
+  "cross_slerp": {
+    "max_step_ratio_median": 1.597,
+    "peak_off_manifold_median": 1.453,
+    "transition_width_median": 0.112,
+    "frac_paths_reaching_clock": 0.91,
+    "p_clock_at_midpoint_mean": 0.674
+  },
+  "cross_pixel": {
+    "max_step_ratio_median": 1.0,
+    "peak_off_manifold_median": 1.378,
+    "transition_width_median": 0.223,
+    "frac_paths_reaching_clock": 0.94,
+    "p_clock_at_midpoint_mean": 0.553
+  },
+  "cat_cat": {
+    "max_step_ratio_median": 1.534,
+    "peak_off_manifold_median": 1.43
+  },
+  "clock_clock": {
+    "max_step_ratio_median": 1.309,
+    "peak_off_manifold_median": 1.124
+  }
+}
